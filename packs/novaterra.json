@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "id": "novaterra",
+    "name": "Novaterra — Sürdürülebilir Gelecek ve Ekolojik Dönüşüm",
+    "summary": "İklim, ekonomi ve topluluk perspektifleriyle ekolojik dönüşüm",
+    "tags": ["sustainability", "climate", "community"]
+  },
+  "personas": [
+    {
+      "id": "economist",
+      "display_name": "Ekonomist",
+      "role": "Makro ve mikro ekonomik çerçeveleyici",
+      "goal": "Teşvikler ve iş modelleri açısından uygulanabilir öneriler sunmak",
+      "style": "veri destekli ve dengeli",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    },
+    {
+      "id": "climate_scientist",
+      "display_name": "İklim Bilimci",
+      "role": "Bilimsel etki analisti",
+      "goal": "Karbon, su ve biyoçeşitlilik etkilerini netleştirmek",
+      "style": "kanıt temelli ve uyarıcı",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    },
+    {
+      "id": "community_leader",
+      "display_name": "Yerel Topluluk Lideri",
+      "role": "Topluluk katılımı savunucusu",
+      "goal": "Yerel paydaşlarla güven ve ortak değerler kurmak",
+      "style": "pratik ve kapsayıcı",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    },
+    {
+      "id": "entrepreneur",
+      "display_name": "Girişimci",
+      "role": "Sürdürülebilir iş modeli geliştirici",
+      "goal": "Pilot ve MVP yol haritaları çıkarmak",
+      "style": "yenilikçi ve fırsat odaklı",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    },
+    {
+      "id": "policy_advisor",
+      "display_name": "Politika Danışmanı",
+      "role": "Regülasyon ve teşvik rehberi",
+      "goal": "Yerel/ulusal politika uyumunu sağlamak",
+      "style": "stratejik ve temkinli",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    },
+    {
+      "id": "eco_artist",
+      "display_name": "Ekosanatçı",
+      "role": "Duygusal bağ kuran anlatı tasarımcısı",
+      "goal": "Topluluğu harekete geçirecek hikayeler oluşturmak",
+      "style": "hikaye anlatıcı ve ilham verici",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    }
+  ],
+  "phases": [
+    {
+      "id": "problem",
+      "name": "Sorun",
+      "objective": "Çekirdek çevresel sorunu ve kapsamını netleştirmek",
+      "turn_order": ["climate_scientist", "community_leader", "economist"],
+      "rounds": {"min": 1, "max": 1}
+    },
+    {
+      "id": "impact",
+      "name": "Etki",
+      "objective": "Etkilenen paydaşları ve göstergeleri belirlemek",
+      "turn_order": ["economist", "policy_advisor", "community_leader"],
+      "rounds": {"min": 1, "max": 1}
+    },
+    {
+      "id": "system",
+      "name": "Sistem",
+      "objective": "Sistem haritası ve geri besleme döngülerini çıkarmak",
+      "turn_order": ["entrepreneur", "climate_scientist", "policy_advisor"],
+      "rounds": {"min": 1, "max": 1}
+    },
+    {
+      "id": "solution",
+      "name": "Çözüm",
+      "objective": "Pilot çözümler ve topluluk aksiyonlarını belirlemek",
+      "turn_order": ["eco_artist", "entrepreneur", "community_leader"],
+      "rounds": {"min": 1, "max": 1}
+    }
+  ],
+  "deliverables": [
+    {
+      "id": "system_map",
+      "name": "Sistem haritası",
+      "type": "json",
+      "when": "session_end",
+      "schema": {
+        "nodes": [
+          {"name": "öğe", "type": "string"},
+          {"name": "etki", "type": "string"}
+        ],
+        "edges": [
+          {"name": "kaynak", "type": "string"},
+          {"name": "hedef", "type": "string"},
+          {"name": "ilişki", "type": "string"}
+        ]
+      },
+      "export_formats": ["json", "md"]
+    },
+    {
+      "id": "innovation_canvas",
+      "name": "Yenilik kanvası",
+      "type": "markdown",
+      "when": "session_end",
+      "schema": {
+        "blocks": ["Sorun", "Hedef Kitle", "Çözüm Taslağı", "Pilot Adımları", "Etkisi"],
+        "tone": "net ve ilham verici"
+      },
+      "export_formats": ["md"]
+    },
+    {
+      "id": "community_action_plan",
+      "name": "Topluluk aksiyon planı",
+      "type": "markdown",
+      "when": "session_end",
+      "schema": {
+        "sections": ["Aksiyon listesi", "Rol ve sorumluluk", "Zamanlama", "Başarı ölçütleri"],
+        "call_to_action": true
+      },
+      "export_formats": ["md"]
+    }
+  ]
+}

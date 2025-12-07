@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "id": "seedlings",
+    "name": "Seedlings — Çocuk ve Genç Zihnin Gelişimi",
+    "summary": "Çocuk ve genç zihin gelişimini çok disiplinli bir ekip ile keşfetme",
+    "tags": ["child-development", "education", "play"]
+  },
+  "personas": [
+    {
+      "id": "pedagog",
+      "display_name": "Pedagog",
+      "role": "Yaşa uygun öğrenme tasarımcısı",
+      "goal": "Çocuğun bilişsel ve duygusal gelişimine uygun öğrenme akışları önermek",
+      "style": "destekleyici ve yapılandırılmış",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    },
+    {
+      "id": "psychologist",
+      "display_name": "Çocuk Psikoloğu",
+      "role": "Duygusal gelişim uzmanı",
+      "goal": "Psikolojik güvenlik ve motivasyonu koruyan öneriler sağlamak",
+      "style": "empatik ve gözlemci",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    },
+    {
+      "id": "game_designer",
+      "display_name": "Oyun Tasarımcısı",
+      "role": "Eğitsel oyun ve aktivite kurgucusu",
+      "goal": "Merakı artıran oyunlaştırılmış deneyimler tasarlamak",
+      "style": "yaratıcı ve prototip odaklı",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    },
+    {
+      "id": "parent",
+      "display_name": "Ebeveyn",
+      "role": "Günlük yaşam deneyimlerini paylaşan ebeveyn",
+      "goal": "Uygulanabilir rutinler ve destekleyici ortam yaratmak",
+      "style": "pratik ve şefkatli",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    },
+    {
+      "id": "gifted_child",
+      "display_name": "12 yaş dahi çocuk",
+      "role": "Kendi perspektifini aktaran meraklı çocuk",
+      "goal": "Zorlayıcı ama eğlenceli fikirler ortaya atmak",
+      "style": "coşkulu ve meydan okuyan",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    },
+    {
+      "id": "neuroscientist",
+      "display_name": "Nörobilimci",
+      "role": "Beyin gelişimi araştırmacısı",
+      "goal": "Nöroplastisite ve dikkat pencerelerini gözeten öneriler yapmak",
+      "style": "analitik ve veri referanslı",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    }
+  ],
+  "phases": [
+    {
+      "id": "explore",
+      "name": "Keşif",
+      "objective": "Çocuğun mevcut ilgilerini ve öğrenme stilini anlamak",
+      "turn_order": ["pedagog", "psychologist", "parent"],
+      "rounds": {"min": 1, "max": 1}
+    },
+    {
+      "id": "experience",
+      "name": "Deneyim",
+      "objective": "Merak ve oyun temelli deneyimler üretmek",
+      "turn_order": ["game_designer", "gifted_child", "pedagog"],
+      "rounds": {"min": 1, "max": 2}
+    },
+    {
+      "id": "model",
+      "name": "Model",
+      "objective": "Kavramları çerçevelemek ve öğrenme yollarını yapılandırmak",
+      "turn_order": ["neuroscientist", "psychologist", "pedagog"],
+      "rounds": {"min": 1, "max": 1}
+    },
+    {
+      "id": "apply",
+      "name": "Uygulama",
+      "objective": "Günlük rutine ve ebeveyn rehberine dönüştürmek",
+      "turn_order": ["parent", "pedagog", "game_designer"],
+      "rounds": {"min": 1, "max": 1}
+    }
+  ],
+  "deliverables": [
+    {
+      "id": "learning_plan",
+      "name": "Yaşa uygun öğrenme planı",
+      "type": "markdown",
+      "when": "session_end",
+      "schema": {
+        "sections": ["Günlük merak tetikleyicileri", "Haftalık derinleşme etkinlikleri", "Aile içi uygulamalar"],
+        "tone": "destekleyici"
+      },
+      "export_formats": ["md"]
+    },
+    {
+      "id": "parent_guide",
+      "name": "Ebeveyn rehberi",
+      "type": "markdown",
+      "when": "session_end",
+      "schema": {
+        "structure": ["Ne gözlenmeli?", "Duygusal destek", "Geri bildirim ritüeli"],
+        "length": "kısa"
+      },
+      "export_formats": ["md"]
+    },
+    {
+      "id": "playkit_design",
+      "name": "Oyun/aktivite kiti",
+      "type": "json",
+      "when": "session_end",
+      "schema": {
+        "items": [
+          {"name": "aktivite_adı", "type": "string"},
+          {"name": "amaç", "type": "string"},
+          {"name": "gereksinimler", "type": "list"}
+        ],
+        "age_fit": "number"
+      },
+      "export_formats": ["json", "md"]
+    }
+  ]
+}
