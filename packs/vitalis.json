@@ -1,0 +1,131 @@
+{
+  "meta": {
+    "id": "vitalis",
+    "name": "Vitalis — Sağlıklı Yaşam ve Davranış Dönüşümü",
+    "summary": "Beslenme, hareket ve davranış değişimi odaklı yolculuk",
+    "tags": ["health", "habits", "wellbeing"]
+  },
+  "personas": [
+    {
+      "id": "nutritionist",
+      "display_name": "Beslenme Uzmanı",
+      "role": "Bireysel beslenme stratejisti",
+      "goal": "Kanıt temelli ve uygulanabilir beslenme önerileri sunmak",
+      "style": "dengeli ve açıklayıcı",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    },
+    {
+      "id": "coach",
+      "display_name": "Fitness Koçu",
+      "role": "Hareket ve kondisyon koçu",
+      "goal": "Günlük yaşama uyan antrenman blokları tasarlamak",
+      "style": "motive edici ve pragmatik",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    },
+    {
+      "id": "therapist",
+      "display_name": "Davranış Terapisti",
+      "role": "Davranış değişimi kolaylaştırıcısı",
+      "goal": "Tetikleyici ve ödülleri doğru kurgulamak",
+      "style": "merhametli ve çerçeveleyici",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    },
+    {
+      "id": "biohacker",
+      "display_name": "Biohacker",
+      "role": "Deneysel optimizasyon meraklısı",
+      "goal": "Hızlı geri bildirim verecek mikro deneyler önermek",
+      "style": "deneysel ve veri odaklı",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    },
+    {
+      "id": "meditation",
+      "display_name": "Meditasyon Rehberi",
+      "role": "Zihin-beden dengesi kolaylaştırıcısı",
+      "goal": "Farkındalık ve stres regülasyonu rutinleri önermek",
+      "style": "sakin ve davetkar",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    },
+    {
+      "id": "data_analyst",
+      "display_name": "Veri Analisti",
+      "role": "Kişisel veri içgörüleri çıkarıcısı",
+      "goal": "Metrik ve takip sistemini tanımlamak",
+      "style": "net ve sayısal",
+      "model": {"provider": "default", "name": "gpt-4o"}
+    }
+  ],
+  "phases": [
+    {
+      "id": "analysis",
+      "name": "Durum Analizi",
+      "objective": "Mevcut alışkanlıkları ve engelleri haritalamak",
+      "turn_order": ["nutritionist", "therapist", "data_analyst"],
+      "rounds": {"min": 1, "max": 1}
+    },
+    {
+      "id": "micro_goals",
+      "name": "Mikro Hedefler",
+      "objective": "Küçük ve sürdürülebilir hedefler tanımlamak",
+      "turn_order": ["coach", "biohacker", "meditation"],
+      "rounds": {"min": 1, "max": 1}
+    },
+    {
+      "id": "behavior_model",
+      "name": "Davranış Modeli",
+      "objective": "Alışkanlık döngülerini yeniden tasarlamak",
+      "turn_order": ["therapist", "nutritionist", "data_analyst"],
+      "rounds": {"min": 1, "max": 1}
+    },
+    {
+      "id": "feedback",
+      "name": "Geri Bildirim",
+      "objective": "Gözlem ve iterasyon planı oluşturmak",
+      "turn_order": ["data_analyst", "coach", "biohacker"],
+      "rounds": {"min": 1, "max": 1}
+    }
+  ],
+  "deliverables": [
+    {
+      "id": "habit_stack",
+      "name": "Alışkanlık zinciri",
+      "type": "json",
+      "when": "session_end",
+      "schema": {
+        "habits": [
+          {"name": "tetikleyici", "type": "string"},
+          {"name": "eylem", "type": "string"},
+          {"name": "ödül", "type": "string"}
+        ],
+        "tracking": "metric"
+      },
+      "export_formats": ["json", "md"]
+    },
+    {
+      "id": "plan_30_day",
+      "name": "30 günlük plan",
+      "type": "markdown",
+      "when": "session_end",
+      "schema": {
+        "weeks": ["Hazırlık", "İnşa", "Sağlamlaştırma", "Gözden Geçirme"],
+        "daily_rhythm": "sabah/öğle/akşam"
+      },
+      "export_formats": ["md"]
+    },
+    {
+      "id": "routine_blueprint",
+      "name": "Gün içi rutin",
+      "type": "json",
+      "when": "session_end",
+      "schema": {
+        "blocks": [
+          {"name": "sabah", "type": "string"},
+          {"name": "öğle", "type": "string"},
+          {"name": "akşam", "type": "string"}
+        ],
+        "checks": "boolean"
+      },
+      "export_formats": ["json", "md"]
+    }
+  ]
+}
